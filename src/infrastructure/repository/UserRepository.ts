@@ -39,7 +39,6 @@ class UserRepository {
     userSchema.username = user.username;
 
     const response = await this.repository.findOne(userSchema);
-
     if (response) {
       user.id = response.id;
       user.name = response.name;
