@@ -11,6 +11,8 @@
   "author": "Luiz Mendes",
   "license": "MIT",
   "dependencies": {
+    "@types/cors": "^2.8.12",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "swagger-ui-express": "^4.1.6"
   },
