@@ -61,6 +61,25 @@
                 }
               }
             }
+          },
+          "409": {
+            "description": "Already exists",
+            "content": {
+              "application/json": {
+                "schema":{
+                  "$ref": "#/components/schemas/responseMessage"
+                },
+                "examples": {
+                  "responseMessage": {
+                    "value": {
+                      "status": false,
+                      "message": "Username already exists.",
+                      "data":""
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
