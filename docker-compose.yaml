@@ -1,0 +1,36 @@
+version: '3.7'
+
+services:
+
+  quikuser_api:
+    image: ${IMAGE_NAME:-quikuser}
+    build:
+        context: ./
+    container_name: ${CONTAINER_NAME:-quikuser}
+    privileged: true
+    restart: always
+    networks:
+        - net-quikuser
+    ports:
+        - "3000:3000"
+    volumes:
+        - ./:/var/quikuser/
+  quikuser_db:
+    container_name: ${CONTAINER_NAME:-quikuserdb}
+    image: mariadb
+    restart: always
+    command: mysqld --max_allowed_packet=30M
+    environment:
+        - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-quikuserpwd}
+        - MYSQL_DATABASE=${MYSQL_ROOT_DATABASE:-quikuser}
+    networks:
+        - net-quikuser
+    ports:
+        - "3306:3306"
+    volumes:
+        - ./data/db/:/var/lib/mysql
+# DEV Network
+networks:
+  net-quikuser:
+    name: net-quikuser
+    driver: bridge
