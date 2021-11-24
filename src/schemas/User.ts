@@ -1,7 +1,7 @@
 import { Entity, PrimaryColumn, Column } from 'typeorm';
 
-@Entity()
-export default class User {
+@Entity('users')
+export default class UserSchema {
   @PrimaryColumn()
   id!: string;
 
