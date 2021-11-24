@@ -1,0 +1,11 @@
+{
+  "openapi":"3.0.0",
+  "info":{
+      "title": "Quik User API",
+      "description": "Documentation to Quik User API",
+      "contact": {
+          "email": "luiz.mendes@outlook.com"
+      },
+      "version": "1.0.0"
+  }
+}
