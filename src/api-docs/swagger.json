@@ -7,5 +7,78 @@
           "email": "luiz.mendes@outlook.com"
       },
       "version": "1.0.0"
+  },
+  "servers":[
+    {
+      "url":"http://localhost:3000/v1",
+      "description": "Dev API"
+    }
+  ],
+  "paths":{
+    "/user":{
+      "post": {
+        "summary":"add user",
+        "description": "Responsible for adding the user",
+        "tags":["User"],
+        "requestBody": {
+          "content":{
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              },
+              "examples": {
+                "user":{
+                  "value": {
+                    "name": "Luiz Mendes",
+                    "username": "luizmendes90",
+                    "birthdate": "2020-12-1990",
+                    "address": "Avenida Tropical",
+                    "addressNumber": "1234",
+                    "primaryPhone": "99999999999",
+                    "description": "Hello"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components":{
+    "schemas":{
+      "User": {
+        "type": "object",
+        "properties": {
+          "id":{
+            "type":"string"
+          },
+          "name":{
+            "type":"string"
+          },
+          "username":{
+            "type":"string"
+          },
+          "birthdate":{
+            "type":"Date"
+          },
+          "address":{
+            "type":"string"
+          },
+          "addressNumber":{
+            "type":"string"
+          },
+          "primaryPhone":{
+            "type":"number"
+          },
+          "description":{
+            "type":"string"
+          },
+          "createdAt":{
+            "type":"Date"
+          }
+        }
+      }
+    }
   }
 }
