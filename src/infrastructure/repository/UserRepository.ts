@@ -77,6 +77,29 @@ class UserRepository {
       return false;
     }
   }
+
+  async updateUser(id: string, user: User): Promise<boolean> {
+    const userSchema = new UserSchema();
+
+    userSchema.name = user.name;
+    userSchema.username = user.username;
+    userSchema.birthdate = user.birthdate;
+    userSchema.address = user.address;
+    userSchema.addressNumber = user.addressNumber;
+    userSchema.primaryPhone = user.primaryPhone;
+    userSchema.description = user.description;
+
+    try {
+      const response = await this.repository.update(id, userSchema);
+      if (response) {
+        return true;
+      }
+      return false;
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
+  }
 }
 
 export default UserRepository;
