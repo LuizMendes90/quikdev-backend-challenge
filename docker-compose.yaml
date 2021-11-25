@@ -17,18 +17,16 @@ services:
         - ./:/var/quikuser/
   quikuser_db:
     container_name: ${CONTAINER_NAME:-quikuserdb}
-    image: mariadb
-    restart: always
-    command: mysqld --max_allowed_packet=30M
+    image: mongo
     environment:
-        - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-quikuserpwd}
-        - MYSQL_DATABASE=${MYSQL_ROOT_DATABASE:-quikuser}
+      MONGO_INITDB_ROOT_USERNAME: quikuser
+      MONGO_INITDB_ROOT_PASSWORD: quikuserPWD
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
     networks:
         - net-quikuser
-    ports:
-        - "3306:3306"
-    volumes:
-        - ./data/db/:/var/lib/mysql
 # DEV Network
 networks:
   net-quikuser:

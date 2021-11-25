@@ -1,12 +1,13 @@
 import { ConnectionOptions } from 'typeorm';
 
 const info: ConnectionOptions = {
-  type: 'mysql',
+  type: 'mongodb',
   host: 'quikuserdb',
-  port: 3306,
-  username: 'root',
-  password: 'quikuserpwd',
+  username: 'quikuser',
+  password: 'quikuserPWD',
+  port: 27017,
   database: 'quikuser',
+  authSource: 'admin',
   synchronize: true,
   logging: false,
   entities: ['src/schemas/**/*.ts'],
