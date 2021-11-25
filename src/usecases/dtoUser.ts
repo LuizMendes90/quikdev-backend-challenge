@@ -1,4 +1,5 @@
 export default interface dtoUser {
+  id?: string;
   name: string;
   username: string;
   birthdate: Date;
