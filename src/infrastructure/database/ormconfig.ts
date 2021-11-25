@@ -8,6 +8,7 @@ const info: ConnectionOptions = {
   port: 27017,
   database: 'quikuser',
   authSource: 'admin',
+  useUnifiedTopology: true,
   synchronize: true,
   logging: false,
   entities: ['src/schemas/**/*.ts'],
