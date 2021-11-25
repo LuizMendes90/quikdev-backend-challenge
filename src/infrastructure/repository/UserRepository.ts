@@ -54,6 +54,29 @@ class UserRepository {
 
     return user;
   }
+
+  async getUserById(user: User): Promise<User | boolean> {
+    try {
+      const response = await this.repository.findOne(user.id);
+
+      if (response) {
+        user.id = response.id;
+        user.name = response.name;
+        user.username = response.username;
+        user.birthdate = response.birthdate;
+        user.address = response.address;
+        user.addressNumber = response.addressNumber;
+        user.primaryPhone = response.primaryPhone;
+        user.description = response.description;
+        user.createdAt = response.createdAt;
+        return true;
+      }
+      return false;
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
+  }
 }
 
 export default UserRepository;

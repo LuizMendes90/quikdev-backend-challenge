@@ -1,3 +1,4 @@
+import { SimpleConsoleLogger } from 'typeorm';
 import UserRepository from '../infrastructure/repository/UserRepository';
 
 export default class User {
@@ -30,4 +31,12 @@ export default class User {
 
   exist = async (): Promise<boolean> =>
     !!(await this.repo.getUserByUserName(this));
+
+  getById = async (id: string): Promise<User | boolean> => {
+    this.id = id;
+
+    const response = await this.repo.getUserById(this);
+
+    return response ? this : false;
+  };
 }

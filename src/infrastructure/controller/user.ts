@@ -1,6 +1,7 @@
 import { Router, Request, Response } from 'express';
 import addUser from '../../usecases/addUser';
 import dtoUser from '../../usecases/dtoUser';
+import getUserById from '../../usecases/getUserById';
 
 const userRoute = Router();
 
@@ -19,6 +20,13 @@ userRoute.post('/', async (req: Request, res: Response) => {
 
   if (response) return res.sendStatus(201);
   return res.sendStatus(409);
+});
+
+userRoute.get('/:id', async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const response = await getUserById(id);
+  if (response) return res.status(200).send(response);
+  return res.sendStatus(204);
 });
 
 export default userRoute;
