@@ -84,7 +84,7 @@
         }
       }
     },
-    "/user/{id}":{
+    "/user/{ids}":{
       "get":{
         "summary": "Get one user by id.",
         "description": "Responsible for fetching a user based on the entered id.",
@@ -106,6 +106,54 @@
                 "$ref": "#/components/schemas/User"
               }
             }
+          },
+          "404": {
+            "description": "Incorrect data."
+          },
+          "204": {
+            "description": "User doesn't exists."
+          }
+        }
+      }
+    },
+    "/user/{id}":{
+      "put":{
+        "summary": "Change a user's data",
+        "description": "Based on the informed id and sent data, a user's data is changed.",
+        "tags":["User"],
+        "parameters": [
+          {
+          "name": "id",
+          "in":"path",
+          "description": "UUID of User",
+          "required": true
+          }
+        ],
+        "requestBody":{
+          "content":{
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              },
+              "examples": {
+                "user":{
+                  "value": {
+                    "name": "Luiz Mendes",
+                    "username": "luizmendes90",
+                    "birthdate": "1990-12-08",
+                    "address": "Avenida Tropical",
+                    "addressNumber": "1234",
+                    "primaryPhone": "99999999999",
+                    "description": "Hello"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User Updated."
           },
           "404": {
             "description": "Incorrect data."
