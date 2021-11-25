@@ -13,7 +13,6 @@ const updateUser = async (id: string, request: dtoUser): Promise<boolean> => {
   user.description = request.description;
 
   const result = await user.update(id);
-
   return result;
 };
 
