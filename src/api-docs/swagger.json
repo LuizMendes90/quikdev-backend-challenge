@@ -84,7 +84,7 @@
         }
       }
     },
-    "/user/{ids}":{
+    "/user/{id}":{
       "get":{
         "summary": "Get one user by id.",
         "description": "Responsible for fetching a user based on the entered id.",
@@ -114,9 +114,7 @@
             "description": "User doesn't exists."
           }
         }
-      }
-    },
-    "/user/{id}":{
+      },
       "put":{
         "summary": "Change a user's data",
         "description": "Based on the informed id and sent data, a user's data is changed.",
@@ -154,6 +152,29 @@
         "responses": {
           "200": {
             "description": "User Updated."
+          },
+          "404": {
+            "description": "Incorrect data."
+          },
+          "204": {
+            "description": "User doesn't exists."
+          }
+        }
+      },"delete": {
+        "sumary": "Delete a user",
+        "description": "Based on the informed id, remove a user.",
+        "tags":["User"],
+        "parameters": [
+          {
+            "name": "id",
+            "in":"path",
+            "description": "UUID of User",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User Deleted."
           },
           "404": {
             "description": "Incorrect data."
