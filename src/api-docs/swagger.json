@@ -17,8 +17,8 @@
   "paths":{
     "/user":{
       "post": {
-        "summary":"add user",
-        "description": "Responsible for adding the user",
+        "summary":"Add one user.",
+        "description": "Responsible for adding the user.",
         "tags":["User"],
         "requestBody": {
           "content":{
@@ -80,6 +80,38 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/user/{id}":{
+      "get":{
+        "summary": "Get one user by id.",
+        "description": "Responsible for fetching a user based on the entered id.",
+        "tags": ["User"],
+        "parameters": [
+          {
+            "name":"id",
+            "in": "path",
+            "description": "UUID of User",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User Found.",
+            "content": {
+              "application/json": {
+                "schema": "object",
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          },
+          "404": {
+            "description": "Incorrect data."
+          },
+          "204": {
+            "description": "User doesn't exists."
           }
         }
       }
