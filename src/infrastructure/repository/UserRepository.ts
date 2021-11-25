@@ -100,6 +100,19 @@ class UserRepository {
       return false;
     }
   }
+
+  async deleteUser(id: string): Promise<boolean> {
+    try {
+      const response = await this.repository.delete(id);
+      if (response) {
+        return true;
+      }
+      return false;
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
+  }
 }
 
 export default UserRepository;

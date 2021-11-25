@@ -1,5 +1,6 @@
 import { Router, Request, Response } from 'express';
 import addUser from '../../usecases/addUser';
+import deleteUser from '../../usecases/deleteUser';
 import dtoUser from '../../usecases/dtoUser';
 import getUserById from '../../usecases/getUserById';
 import updateUser from '../../usecases/updateUser';
@@ -43,6 +44,14 @@ userRoute.put('/:id', async (req: Request, res: Response) => {
   };
 
   const response = await updateUser(id, user);
+
+  if (response) return res.status(200).send(response);
+  return res.sendStatus(204);
+});
+
+userRoute.delete('/:id', async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const response = await deleteUser(id);
 
   if (response) return res.status(200).send(response);
   return res.sendStatus(204);

@@ -52,4 +52,18 @@ export default class User {
       return false;
     }
   };
+
+  delete = async (id: string): Promise<boolean> => {
+    try {
+      const user = new User();
+      const userExists = await user.getById(id);
+      if (userExists) {
+        return !!(await this.repo.deleteUser(id));
+      }
+      return false;
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
+  };
 }
