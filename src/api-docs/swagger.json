@@ -161,7 +161,7 @@
           }
         }
       },"delete": {
-        "sumary": "Delete a user",
+        "summary": "Delete a user",
         "description": "Based on the informed id, remove a user.",
         "tags":["User"],
         "parameters": [
