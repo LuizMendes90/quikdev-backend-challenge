@@ -12,7 +12,6 @@ class UserRepository {
   async createUser(user: User): Promise<boolean> {
     const userSchema = new UserSchema();
 
-    userSchema.id = user.id;
     userSchema.name = user.name;
     userSchema.username = user.username;
     userSchema.birthdate = user.birthdate;
@@ -26,6 +25,7 @@ class UserRepository {
 
     try {
       response = await this.repository.save(userSchema);
+
     } catch (error) {
       console.log(error);
     }

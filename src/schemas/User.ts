@@ -1,8 +1,8 @@
-import { Entity, PrimaryColumn, Column } from 'typeorm';
+import { Entity, PrimaryColumn, Column, ObjectIdColumn } from 'typeorm';
 
 @Entity('users')
 export default class UserSchema {
-  @PrimaryColumn()
+  @ObjectIdColumn()
   id!: string;
 
   @Column()
