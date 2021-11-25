@@ -25,7 +25,6 @@ class UserRepository {
 
     try {
       response = await this.repository.save(userSchema);
-
     } catch (error) {
       console.log(error);
     }
