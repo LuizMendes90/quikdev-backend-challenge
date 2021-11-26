@@ -42,7 +42,7 @@ export default class User {
     try {
       const userExists = await this.verifyExistById(id);
       if (userExists) {
-        await this.repo.updateUser(id, this);
+        return !!this.repo.updateUser(id, this);
       }
       return false;
     } catch (error) {

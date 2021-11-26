@@ -105,10 +105,7 @@ class UserRepository implements IUserRepository {
 
     try {
       const response = await this.repository.update(id, userSchema);
-      if (response) {
-        return true;
-      }
-      return false;
+      return !!response;
     } catch (error) {
       console.log(error);
       return false;
