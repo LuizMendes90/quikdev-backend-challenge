@@ -79,6 +79,19 @@ class UserRepository implements IUserRepository {
     }
   }
 
+  async verifyById(id: string): Promise<boolean> {
+    try {
+      const response = await this.repository.findOne(id);
+      if (response) {
+        return true;
+      }
+      return false;
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
+  }
+
   async updateUser(id: string, user: User): Promise<boolean> {
     const userSchema = new UserSchema();
 

@@ -1,5 +1,4 @@
 import IUserRepository from '../infrastructure/repository/IUserRepository';
-import UserRepository from '../infrastructure/repository/UserRepository';
 
 export default class User {
   id!: string;
@@ -36,10 +35,12 @@ export default class User {
     return response ? this : false;
   };
 
+  verifyExistById = async (id: string): Promise<boolean> =>
+    !!(await this.repo.verifyById(id));
+
   update = async (id: string): Promise<boolean> => {
     try {
-      const user = new User();
-      const userExists = await user.getById(this.id);
+      const userExists = await this.verifyExistById(id);
       if (userExists) {
         await this.repo.updateUser(id, this);
       }
@@ -52,8 +53,7 @@ export default class User {
 
   delete = async (id: string): Promise<boolean> => {
     try {
-      const user = new User();
-      const userExists = await user.getById(id);
+      const userExists = await this.verifyExistById(id);
       if (userExists) {
         return !!(await this.repo.deleteUser(id));
       }
