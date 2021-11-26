@@ -3,7 +3,7 @@ import User from '../../entity/User';
 import UserSchema from '../../schemas/User';
 import IUserRepository from './IUserRepository';
 
-class UserRepository implements IUserRepository {
+class TestRepository implements IUserRepository {
   private repository: Repository<UserSchema>;
 
   constructor() {
@@ -11,26 +11,9 @@ class UserRepository implements IUserRepository {
   }
 
   async createUser(user: User): Promise<boolean> {
-    const userSchema = new UserSchema();
+    console.log('salvo');
 
-    userSchema.name = user.name;
-    userSchema.username = user.username;
-    userSchema.birthdate = user.birthdate;
-    userSchema.address = user.address;
-    userSchema.addressNumber = user.addressNumber;
-    userSchema.primaryPhone = user.primaryPhone;
-    userSchema.description = user.description;
-    userSchema.createdAt = user.createdAt;
-
-    let response;
-
-    try {
-      response = await this.repository.save(userSchema);
-    } catch (error) {
-      console.log(error);
-    }
-
-    return !!response;
+    return true;
   }
 
   async getUserByUserName(user: User): Promise<User | boolean> {
@@ -116,4 +99,4 @@ class UserRepository implements IUserRepository {
   }
 }
 
-export default UserRepository;
+export default TestRepository;

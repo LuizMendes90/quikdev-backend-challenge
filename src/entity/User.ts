@@ -1,3 +1,4 @@
+import IUserRepository from '../infrastructure/repository/IUserRepository';
 import UserRepository from '../infrastructure/repository/UserRepository';
 
 export default class User {
@@ -19,11 +20,7 @@ export default class User {
 
   createdAt!: Date;
 
-  private repo!: UserRepository;
-
-  constructor() {
-    this.repo = new UserRepository();
-  }
+  constructor(private repo: IUserRepository) {}
 
   create = async (): Promise<boolean> =>
     !(await this.exist()) ? !!(await this.repo.createUser(this)) : false;
