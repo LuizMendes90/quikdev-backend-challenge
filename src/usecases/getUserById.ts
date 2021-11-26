@@ -1,12 +1,10 @@
 import User from '../entity/User';
-import UserRepository from '../infrastructure/repository/UserRepository';
 import dtoUser from './dtoUser';
 
-const getUserById = async (id: string): Promise<dtoUser | boolean> => {
-  const repository = new UserRepository();
-
-  const user: User = new User(repository);
-
+const getUserById = async (
+  user: User,
+  id: string,
+): Promise<dtoUser | boolean> => {
   const response = await user.getById(id);
 
   if (response) {

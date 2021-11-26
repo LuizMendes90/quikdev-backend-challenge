@@ -1,12 +1,11 @@
 import User from '../entity/User';
-import UserRepository from '../infrastructure/repository/UserRepository';
 import dtoUser from './dtoUser';
 
-const updateUser = async (id: string, request: dtoUser): Promise<boolean> => {
-  const repository = new UserRepository();
-
-  const user: User = new User(repository);
-
+const updateUser = async (
+  user: User,
+  request: dtoUser,
+  id: string,
+): Promise<boolean> => {
   user.name = request.name;
   user.username = request.username;
   user.birthdate = request.birthdate;

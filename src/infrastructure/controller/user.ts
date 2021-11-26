@@ -1,14 +1,16 @@
 import { Router, Request, Response } from 'express';
+import User from '../../entity/User';
 import addUser from '../../usecases/addUser';
 import deleteUser from '../../usecases/deleteUser';
 import dtoUser from '../../usecases/dtoUser';
 import getUserById from '../../usecases/getUserById';
 import updateUser from '../../usecases/updateUser';
+import UserRepository from '../repository/UserRepository';
 
 const userRoute = Router();
 
 userRoute.post('/', async (req: Request, res: Response) => {
-  const user: dtoUser = {
+  const dto: dtoUser = {
     name: req.body.name,
     username: req.body.username,
     birthdate: req.body.birthdate,
@@ -17,8 +19,10 @@ userRoute.post('/', async (req: Request, res: Response) => {
     primaryPhone: req.body.primaryPhone,
     description: req.body.description,
   };
+  const repository = new UserRepository();
+  const user = new User(repository);
 
-  const response = await addUser(user);
+  const response = await addUser(user, dto);
 
   if (response) return res.sendStatus(201);
   return res.sendStatus(409);
@@ -26,14 +30,18 @@ userRoute.post('/', async (req: Request, res: Response) => {
 
 userRoute.get('/:id', async (req: Request, res: Response) => {
   const { id } = req.params;
-  const response = await getUserById(id);
+
+  const repository = new UserRepository();
+  const user = new User(repository);
+
+  const response = await getUserById(user, id);
   if (response) return res.status(200).send(response);
   return res.sendStatus(204);
 });
 
 userRoute.put('/:id', async (req: Request, res: Response) => {
   const { id } = req.params;
-  const user: dtoUser = {
+  const dto: dtoUser = {
     name: req.body.name,
     username: req.body.username,
     birthdate: req.body.birthdate,
@@ -43,7 +51,10 @@ userRoute.put('/:id', async (req: Request, res: Response) => {
     description: req.body.description,
   };
 
-  const response = await updateUser(id, user);
+  const repository = new UserRepository();
+  const user = new User(repository);
+
+  const response = await updateUser(user, dto, id);
 
   if (response) return res.status(200).send(response);
   return res.sendStatus(204);
@@ -51,7 +62,11 @@ userRoute.put('/:id', async (req: Request, res: Response) => {
 
 userRoute.delete('/:id', async (req: Request, res: Response) => {
   const { id } = req.params;
-  const response = await deleteUser(id);
+
+  const repository = new UserRepository();
+  const user = new User(repository);
+
+  const response = await deleteUser(user, id);
 
   if (response) return res.status(200).send(response);
   return res.sendStatus(204);
