@@ -80,4 +80,12 @@ describe('User', () => {
     const exists = await user.update(user.id);
     expect(exists).toBe(false);
   });
+
+  it('should return false to delete if user does not exists', async () => {
+    const user = new User(mockFalse);
+    user.id = 'ad163ac6-4fa8-11ec-81d3-0242ac130003';
+
+    const exists = await user.delete(user.id);
+    expect(exists).toBe(false);
+  });
 });
