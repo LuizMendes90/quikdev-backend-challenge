@@ -44,18 +44,26 @@
         },
         "responses": {
           "201": {
-            "description": "Successfully created",
+            "description": "Created",
             "content": {
               "application/json":{
                 "schema":{
-                  "": "#/components/schemas/responseMessage"
+                  "$ref": "#/components/schemas/message"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema":{
+                  "$ref": "#/components/schemas/message"
                 },
                 "examples": {
                   "responseMessage": {
                     "value": {
-                      "status": true,
-                      "message": "created",
-                      "data":""
+                      "msg": "User name is required!."
                     }
                   }
                 }
@@ -63,18 +71,16 @@
             }
           },
           "409": {
-            "description": "Already exists",
+            "description": "Conflict",
             "content": {
               "application/json": {
                 "schema":{
-                  "$ref": "#/components/schemas/responseMessage"
+                  "$ref": "#/components/schemas/message"
                 },
                 "examples": {
-                  "responseMessage": {
+                  "message": {
                     "value": {
-                      "status": false,
-                      "message": "Username already exists.",
-                      "data":""
+                      "msg": "User already exists, try another username."
                     }
                   }
                 }
@@ -99,7 +105,7 @@
         ],
         "responses": {
           "200": {
-            "description": "User Found.",
+            "description": "Ok",
             "content": {
               "application/json": {
                 "schema": "object",
@@ -107,11 +113,28 @@
               }
             }
           },
-          "404": {
-            "description": "Incorrect data."
-          },
           "204": {
-            "description": "User doesn't exists."
+            "description": "Not Content",
+            "content": {
+
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema":{
+                  "$ref": "#/components/schemas/message"
+                },
+                "examples": {
+                  "responseMessage": {
+                    "value": {
+                      "msg": "Id must be a UUID!."
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       },
@@ -151,13 +174,13 @@
         },
         "responses": {
           "200": {
-            "description": "User Updated."
+            "description": "Ok"
           },
-          "404": {
-            "description": "Incorrect data."
+          "400": {
+            "description": "Bad Request"
           },
           "204": {
-            "description": "User doesn't exists."
+            "description": "Not Content"
           }
         }
       },"delete": {
@@ -174,13 +197,13 @@
         ],
         "responses": {
           "200": {
-            "description": "User Deleted."
+            "description": "Ok"
           },
-          "404": {
-            "description": "Incorrect data."
+          "400": {
+            "description": "Bad Request"
           },
           "204": {
-            "description": "User doesn't exists."
+            "description": "Not Content"
           }
         }
       }
