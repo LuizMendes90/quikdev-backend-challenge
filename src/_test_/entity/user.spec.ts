@@ -1,9 +1,12 @@
 import User from '../../entity/User';
+import MockFalseRepo from './MockFalseRepo';
 import MockTrueRepo from './MockTrueRepo';
+
+const mock = new MockTrueRepo();
+const mockFalse = new MockFalseRepo();
 
 describe('User', () => {
   it('should return true if user already exists', async () => {
-    const mock = new MockTrueRepo();
     const user = new User(mock);
     user.id = 'ad163ac6-4fa8-11ec-81d3-0242ac130003';
 
@@ -12,7 +15,6 @@ describe('User', () => {
   });
 
   it('should return false to create if user already exists', async () => {
-    const mock = new MockTrueRepo();
     const user = new User(mock);
     user.id = 'ad163ac6-4fa8-11ec-81d3-0242ac130003';
 
@@ -21,7 +23,6 @@ describe('User', () => {
   });
 
   it('should return true to update if user already exists', async () => {
-    const mock = new MockTrueRepo();
     const user = new User(mock);
     user.id = 'ad163ac6-4fa8-11ec-81d3-0242ac130003';
 
@@ -30,7 +31,6 @@ describe('User', () => {
   });
 
   it('should return true to delete if user already exists', async () => {
-    const mock = new MockTrueRepo();
     const user = new User(mock);
     user.id = 'ad163ac6-4fa8-11ec-81d3-0242ac130003';
 
@@ -39,7 +39,6 @@ describe('User', () => {
   });
 
   it('should return true to verify if id user already exists', async () => {
-    const mock = new MockTrueRepo();
     const user = new User(mock);
     user.id = 'ad163ac6-4fa8-11ec-81d3-0242ac130003';
 
@@ -48,8 +47,6 @@ describe('User', () => {
   });
 
   it('should return object User when have a user with this id', async () => {
-    // const mock = new MockTrueRepo();
-    const mock = new MockTrueRepo();
     const user = new User(mock);
     user.id = 'ad163ac6-4fa8-11ec-81d3-0242ac130003';
 
