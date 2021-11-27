@@ -1,4 +1,5 @@
 import { Router, Request, Response } from 'express';
+import validator from 'validator';
 import User from '../../entity/User';
 import addUser from '../../usecases/addUser';
 import deleteUser from '../../usecases/deleteUser';
@@ -35,6 +36,10 @@ userRoute.post('/', async (req: Request, res: Response) => {
 
 userRoute.get('/:id', async (req: Request, res: Response) => {
   const { id } = req.params;
+
+  if (!validator.isUUID(id)) {
+    return res.sendStatus(400);
+  }
 
   const repository = new UserRepository();
   const user = new User(repository);
