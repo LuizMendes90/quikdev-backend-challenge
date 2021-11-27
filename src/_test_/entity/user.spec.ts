@@ -46,4 +46,17 @@ describe('User', () => {
     const exists = await user.verifyExistById(user.id);
     expect(exists).toBe(true);
   });
+
+  it('should return object User when have a user with this id', async () => {
+    // const mock = new MockTrueRepo();
+    const mock = new MockTrueRepo();
+    const user = new User(mock);
+    user.id = 'ad163ac6-4fa8-11ec-81d3-0242ac130003';
+
+    const result = await user.getById(user.id);
+
+    const isUser = result instanceof User;
+
+    expect(isUser).toBe(true);
+  });
 });
