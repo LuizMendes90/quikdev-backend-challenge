@@ -96,4 +96,15 @@ describe('User', () => {
     const exists = await user.verifyExistById(user.id);
     expect(exists).toBe(false);
   });
+
+  it('should return false when have no user with this id', async () => {
+    const user = new User(mockFalse);
+    user.id = 'ad163ac6-4fa8-11ec-81d3-0242ac130003';
+
+    const result = await user.getById(user.id);
+
+    const isUser = result instanceof User;
+
+    expect(isUser).toBe(false);
+  });
 });
