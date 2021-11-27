@@ -34,7 +34,7 @@
                     "birthdate": "1990-12-08",
                     "address": "Avenida Tropical",
                     "addressNumber": "1234",
-                    "primaryPhone": "99999999999",
+                    "primaryPhone": "(99) 9999-9999",
                     "description": "Hello"
                   }
                 }
@@ -48,13 +48,13 @@
             "content": {
               "application/json":{
                 "schema":{
-                  "$ref": "#/components/schemas/responseMessage"
+                  "": "#/components/schemas/responseMessage"
                 },
                 "examples": {
                   "responseMessage": {
                     "value": {
                       "status": true,
-                      "message": "Successfuly created",
+                      "message": "created",
                       "data":""
                     }
                   }
@@ -141,7 +141,7 @@
                     "birthdate": "1990-12-08",
                     "address": "Avenida Tropical",
                     "addressNumber": "1234",
-                    "primaryPhone": "99999999999",
+                    "primaryPhone": "(99) 9999-9999",
                     "description": "Hello"
                   }
                 }
@@ -220,20 +220,14 @@
           }
         }
       },
-      "responseMessage": {
+      "message": {
         "type":"object",
         "properties":{
-            "status":{
-                "type":"boolean"
-            },
-            "message":{
-                "type":"string"
-            },
-            "data":{
-                "type":"object"
-            }
+          "msg":{
+              "type":"string"
+          }
         }
-    }
+      }
     }
   }
 }
