@@ -20,7 +20,25 @@ describe('User Route', () => {
   });
 
   it('should return 400 when get user with param diferent of UUID', async () => {
-    const res = await request(app).get('/v1/user/123').send();
+    const res = await request(app).get('/v1/user/falseuuid').send();
+    const { statusCode } = res;
+
+    expect(statusCode).toBe(400);
+  });
+
+  it('should return 400 when update user with param diferent of UUID', async () => {
+    const res = await request(app).put('/v1/user/falseuuid').send({
+      username: 'testeusername',
+    });
+    const { statusCode } = res;
+
+    expect(statusCode).toBe(400);
+  });
+
+  it('should return 400 when delete user with param diferent of UUID', async () => {
+    const res = await request(app).delete('/v1/user/falseuuid').send({
+      username: 'testeusername',
+    });
     const { statusCode } = res;
 
     expect(statusCode).toBe(400);
