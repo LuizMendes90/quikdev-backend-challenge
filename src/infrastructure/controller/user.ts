@@ -51,6 +51,11 @@ userRoute.get('/:id', async (req: Request, res: Response) => {
 
 userRoute.put('/:id', async (req: Request, res: Response) => {
   const { id } = req.params;
+
+  if (!validator.isUUID(id)) {
+    return res.sendStatus(400);
+  }
+
   const dto: dtoUser = {
     name: req.body.name,
     username: req.body.username,
@@ -77,6 +82,9 @@ userRoute.put('/:id', async (req: Request, res: Response) => {
 userRoute.delete('/:id', async (req: Request, res: Response) => {
   const { id } = req.params;
 
+  if (!validator.isUUID(id)) {
+    return res.sendStatus(400);
+  }
   const repository = new UserRepository();
   const user = new User(repository);
 
