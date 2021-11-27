@@ -3,7 +3,7 @@ import IUserRepository from '../../infrastructure/repository/IUserRepository';
 
 class MockFalseRepo implements IUserRepository {
   async createUser(user: User): Promise<boolean> {
-    return false;
+    return true;
   }
 
   async getUserByUserName(user: User): Promise<boolean | User> {
