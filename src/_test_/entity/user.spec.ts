@@ -64,4 +64,12 @@ describe('User', () => {
     const exists = await user.exist();
     expect(exists).toBe(false);
   });
+
+  it('should return true to create if user does not exists', async () => {
+    const user = new User(mockFalse);
+    user.id = 'ad163ac6-4fa8-11ec-81d3-0242ac130003';
+
+    const exists = await user.create();
+    expect(exists).toBe(true);
+  });
 });
