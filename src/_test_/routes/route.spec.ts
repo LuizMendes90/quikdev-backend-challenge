@@ -18,4 +18,11 @@ describe('User Route', () => {
 
     expect(statusCode).toBe(400);
   });
+
+  it('should return 400 when get user with param diferent of UUID', async () => {
+    const res = await request(app).get('/v1/user/123').send();
+    const { statusCode } = res;
+
+    expect(statusCode).toBe(400);
+  });
 });
