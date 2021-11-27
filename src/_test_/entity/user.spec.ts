@@ -37,4 +37,12 @@ describe('User', () => {
     expect(exists).toBe(true);
   });
 
+  it('should return false to create if user already exists', async () => {
+    const mock = new MockRepo();
+    const user = new User(mock);
+    user.id = 'ad163ac6-4fa8-11ec-81d3-0242ac130003';
+
+    const exists = await user.create();
+    expect(exists).toBe(false);
+  });
 });
