@@ -19,6 +19,11 @@ userRoute.post('/', async (req: Request, res: Response) => {
     primaryPhone: req.body.primaryPhone,
     description: req.body.description,
   };
+
+  if (!dto.username) {
+    return res.sendStatus(400);
+  }
+
   const repository = new UserRepository();
   const user = new User(repository);
 
@@ -50,6 +55,10 @@ userRoute.put('/:id', async (req: Request, res: Response) => {
     primaryPhone: req.body.primaryPhone,
     description: req.body.description,
   };
+
+  if (!dto.username) {
+    return res.sendStatus(400);
+  }
 
   const repository = new UserRepository();
   const user = new User(repository);
