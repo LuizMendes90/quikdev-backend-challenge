@@ -22,7 +22,7 @@ userRoute.post('/', async (req: Request, res: Response) => {
   };
 
   if (!dto.username) {
-    return res.sendStatus(400);
+    return res.status(400).send({ msg: 'User name is required!' });
   }
 
   const repository = new UserRepository();
@@ -31,14 +31,16 @@ userRoute.post('/', async (req: Request, res: Response) => {
   const response = await addUser(user, dto);
 
   if (response) return res.sendStatus(201);
-  return res.sendStatus(409);
+  return res
+    .status(409)
+    .send({ msg: 'User already exists, try another username.' });
 });
 
 userRoute.get('/:id', async (req: Request, res: Response) => {
   const { id } = req.params;
 
   if (!validator.isUUID(id)) {
-    return res.sendStatus(400);
+    return res.status(400).send({ msg: 'Id must be a UUID' });
   }
 
   const repository = new UserRepository();
@@ -53,7 +55,7 @@ userRoute.put('/:id', async (req: Request, res: Response) => {
   const { id } = req.params;
 
   if (!validator.isUUID(id)) {
-    return res.sendStatus(400);
+    return res.status(400).send({ msg: 'Id must be a UUID' });
   }
 
   const dto: dtoUser = {
@@ -67,7 +69,9 @@ userRoute.put('/:id', async (req: Request, res: Response) => {
   };
 
   if (!dto.username) {
-    return res.sendStatus(400);
+    return res
+      .status(400)
+      .send({ msg: 'User already exists, try another username.' });
   }
 
   const repository = new UserRepository();
@@ -83,7 +87,7 @@ userRoute.delete('/:id', async (req: Request, res: Response) => {
   const { id } = req.params;
 
   if (!validator.isUUID(id)) {
-    return res.sendStatus(400);
+    return res.status(400).send({ msg: 'Id must be a UUID' });
   }
   const repository = new UserRepository();
   const user = new User(repository);
