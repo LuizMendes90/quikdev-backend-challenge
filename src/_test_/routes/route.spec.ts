@@ -65,5 +65,4 @@ describe('User Route', () => {
 
     expect(statusCode).toBe(400);
   });
-
 });
