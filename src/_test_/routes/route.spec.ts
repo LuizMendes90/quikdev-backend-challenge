@@ -43,4 +43,14 @@ describe('User Route', () => {
 
     expect(statusCode).toBe(400);
   });
+
+  it('should return 400 when try to create user with primaryphone in wrong format', async () => {
+    const res = await request(app).post('/v1/user/').send({
+      username: 'testeusername',
+      primaryPhone: 'wrongphone',
+    });
+    const { statusCode } = res;
+
+    expect(statusCode).toBe(400);
+  });
 });
