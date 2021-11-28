@@ -53,4 +53,17 @@ describe('User Route', () => {
 
     expect(statusCode).toBe(400);
   });
+
+  it('should return 400 when update user without mandatory data (username) is not sent', async () => {
+    const res = await request(app)
+      .put('/v1/user/391f9306-4f8a-11ec-81d3-0242ac130003')
+      .send({
+        username: 'testeusername',
+        primaryPhone: 'wrongphone',
+      });
+    const { statusCode } = res;
+
+    expect(statusCode).toBe(400);
+  });
+
 });
