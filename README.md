@@ -57,6 +57,14 @@ Tests can be run from within the root of the application. From any terminal, typ
 npm run test
 ```
 
-The above command will perform part of the code quality check.## Documentação
+The above command will perform part of the code quality check.
+## Documentação
 
 The Swagger UI based on OPEN API 3.0 was used for documentation. After running the application, the documentation can be viewed at http://localhost:3000/v1/docs. In this part, you can check all available endpoints as well as possible input and output data.
+
+We have 2 routes needed to start using the application:
+ 
+ - http://localhost:3000/v1/register
+ - http://localhost:3000/v1/login
+
+These are necessary, because to make full use of the application, some routes need a token that is generated when logging in. In this case, register at http://localhost:3000/v1/register using the necessary data, after registration, login at http://localhost:3000/v1/login and finally use the returned token to use the other routes.
