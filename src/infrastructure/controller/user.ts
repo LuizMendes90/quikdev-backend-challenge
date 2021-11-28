@@ -56,10 +56,6 @@ userRoute.get('/:id', async (req: Request, res: Response) => {
 userRoute.put('/:id', async (req: Request, res: Response) => {
   const { id } = req.params;
 
-  if (!validator.isUUID(id)) {
-    return res.status(400).send({ msg: 'Id must be a UUID' });
-  }
-
   const dto: dtoUser = {
     name: req.body.name,
     username: req.body.username,
@@ -70,6 +66,12 @@ userRoute.put('/:id', async (req: Request, res: Response) => {
     description: req.body.description,
   };
 
+  if (!validator.isUUID(id)) {
+    return res.status(400).send({ msg: 'Id must be a UUID' });
+  }
+  if (!isValidPhone(dto.primaryPhone))
+    return res.status(400).send({ msg: 'Incorrect phone format!' });
+    
   if (!dto.username) {
     return res
       .status(400)
