@@ -15,6 +15,76 @@
     }
   ],
   "paths":{
+    "/register":{
+      "post": {
+        "summary":"Register a user.",
+        "description": "Responsible for adding the user.",
+        "tags":["User"],
+        "requestBody": {
+          "content":{
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterUser"
+              },
+              "examples": {
+                "user":{
+                  "value": {
+                    "username": "luizmendes90",
+                    "password": "minhasenha"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "$ref": "#/components/schemas/message"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema":{
+                  "$ref": "#/components/schemas/message"
+                },
+                "examples": {
+                  "responseMessage": {
+                    "value": {
+                      "msg": "User name is required!."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema":{
+                  "$ref": "#/components/schemas/message"
+                },
+                "examples": {
+                  "message": {
+                    "value": {
+                      "msg": "User already exists, try another username."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/user":{
       "post": {
         "summary":"Add one user.",
@@ -240,6 +310,17 @@
           },
           "createdAt":{
             "type":"Date"
+          }
+        }
+      },
+      "RegisterUser": {
+        "type": "object",
+        "properties": {
+          "username":{
+            "type":"string"
+          },
+          "password":{
+            "type":"string"
           }
         }
       },
