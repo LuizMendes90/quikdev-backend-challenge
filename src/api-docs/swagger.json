@@ -160,6 +160,7 @@
         "summary":"Add one user.",
         "description": "Responsible for adding the user.",
         "tags":["User"],
+        "security":[{"bearerAuth":[]}],
         "requestBody": {
           "content":{
             "application/json": {
@@ -235,6 +236,7 @@
         "summary": "Get one user by id.",
         "description": "Responsible for fetching a user based on the entered id.",
         "tags": ["User"],
+        "security":[{"bearerAuth":[]}],
         "parameters": [
           {
             "name":"id",
@@ -282,6 +284,7 @@
         "summary": "Change a user's data",
         "description": "Based on the informed id and sent data, a user's data is changed.",
         "tags":["User"],
+        "security":[{"bearerAuth":[]}],
         "parameters": [
           {
           "name": "id",
@@ -327,6 +330,7 @@
         "summary": "Delete a user",
         "description": "Based on the informed id, remove a user.",
         "tags":["User"],
+        "security":[{"bearerAuth":[]}],
         "parameters": [
           {
             "name": "id",
@@ -410,6 +414,13 @@
           }
         }
       }
+    },
+    "securitySchemes":{
+        "bearerAuth": {
+            "type": "http",
+            "scheme": "bearer",
+            "bearerFormat": "JWT"
+        }
     }
   }
 }
