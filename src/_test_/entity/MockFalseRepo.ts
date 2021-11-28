@@ -2,6 +2,10 @@ import User from '../../entity/User';
 import IUserRepository from '../../infrastructure/repository/IUserRepository';
 
 class MockFalseRepo implements IUserRepository {
+  async getUserWithPassword(): Promise<boolean | User> {
+    return true;
+  }
+
   async createUser(user: User): Promise<boolean> {
     return true;
   }
