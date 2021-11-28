@@ -17,6 +17,7 @@ Project to create a RESTful API, developed by Luiz Mendes using the following te
 	- [Running the application](#running-the-application)
 - [Tests](#tests)
 - [Documentation](#documentation)
+- [Agradecimentos](#agradecimentos)
 
 ## Starting
 As a basis for this application, Docker was used, this is why a large part of this section is based on docker. To run with Docker, make sure you have docker and docker-compose installed and configured, more information about these dependencies can be found on the providers website:
@@ -67,4 +68,17 @@ We have 2 routes needed to start using the application:
  - http://localhost:3000/v1/register
  - http://localhost:3000/v1/login
 
-These are necessary, because to make full use of the application, some routes need a token that is generated when logging in. In this case, register at http://localhost:3000/v1/register using the necessary data, after registration, login at http://localhost:3000/v1/login and finally use the returned token to use the other routes.
+These are necessary, because to make full use of the application, some routes need a token that is generated when logging in. In this case, register at http://localhost:3000/v1/register using the necessary data, after registration, login at http://localhost:3000/v1/login and finally use the returned token to use the other routes. To make it easier, follow:
+
+ - Register
+ 	![register](/src/api-docs/imgs/register.png "Register")
+ - Login
+ 	![login](/src/api-docs/imgs/login.png "Login")
+ - Copy TOKEN
+ 	![token](/src/api-docs/imgs/tokenlogin.png "Token")
+ - Navigate to a route that requires authentication, click on the lock and enter the TOKEN. This route can now be used.
+ 	![Auth](/src/api-docs/imgs/auth.png "Auth")
+
+## Agradecimentos
+
+Agradeço a oportunidade de poder fazer parte do time.
