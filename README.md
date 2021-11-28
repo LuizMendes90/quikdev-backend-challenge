@@ -17,6 +17,7 @@ Project to create a RESTful API, developed by Luiz Mendes using the following te
 	- [Running the application](#running-the-application)
 - [Tests](#tests)
 - [Documentation](#documentation)
+- [Notes](#notes)
 - [Agradecimentos](#agradecimentos)
 
 ## Starting
@@ -78,6 +79,15 @@ These are necessary, because to make full use of the application, some routes ne
  	![token](/src/api-docs/imgs/tokenlogin.png "Token")
  - Navigate to a route that requires authentication, click on the lock and enter the TOKEN. This route can now be used.
  	![Auth](/src/api-docs/imgs/auth.png "Auth")
+
+## Notes
+
+I carried out the development in a more basic way to deliver the maximum value according to the specifications. At the end of the first round of development, I noticed that I could improve the code and tried to focus on coupling reduction using Dependency Injection of some artifacts, such as Token and Repository. Other improvements could be applied such as, for example, the verification of registered ID, today, this verification is directly linked with Mongo; another important point is the separation of Bcrypt from the entity (as worked in Token).
+
+Tests are important. I didn't reach the maximum coverage, (maybe I didn't reach the average).
+
+I tried to standardize the README and SWAGGER documentation using the English language (I used google translator as an aid). English is still not my best skill.
+
 
 ## Agradecimentos
 
