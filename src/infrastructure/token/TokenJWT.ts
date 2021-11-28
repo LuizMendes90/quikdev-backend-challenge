@@ -1,8 +1,9 @@
 import jwt from 'jsonwebtoken';
 import User from '../../entity/User';
 import dtoToken from './dtoToken';
+import IToken from './IToken';
 
-class TokenJWT {
+class TokenJWT implements IToken {
   generate(user: User): dtoToken {
     const { id } = user;
     const token = jwt.sign({ id }, `${process.env.SECRET}`, {

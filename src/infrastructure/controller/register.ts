@@ -3,6 +3,7 @@ import User from '../../entity/User';
 import dtoRegister from '../../usecases/dtoRegister';
 import registerUser from '../../usecases/registerUser';
 import UserRepository from '../repository/UserRepository';
+import TokenJWT from '../token/TokenJWT';
 
 const registerRoute = Router();
 
@@ -18,7 +19,8 @@ registerRoute.post('/', async (req: Request, res: Response) => {
     return res.status(400).send({ msg: 'Password is required!' });
 
   const repository = new UserRepository();
-  const user = new User(repository);
+  const token = new TokenJWT();
+  const user = new User(repository, token);
 
   const response = await registerUser(user, dto);
 

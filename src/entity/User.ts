@@ -1,5 +1,5 @@
 import IUserRepository from '../infrastructure/repository/IUserRepository';
-import TokenJWT from '../infrastructure/token/TokenJWT';
+import IToken from '../infrastructure/token/IToken';
 import Bcript from '../utils/crypt/BCrypt';
 
 export default class User {
@@ -23,7 +23,7 @@ export default class User {
 
   createdAt!: Date;
 
-  constructor(private repo: IUserRepository) {}
+  constructor(private repo: IUserRepository, private token: IToken) {}
 
   create = async (): Promise<boolean> =>
     !(await this.exist()) ? !!(await this.repo.createUser(this)) : false;
@@ -45,8 +45,7 @@ export default class User {
       if (response instanceof User) {
         const crypt = new Bcript();
         crypt.compare(this.password, response.password);
-        const token = new TokenJWT();
-        return token.generate(response).token;
+        return this.token.generate(response).token;
       }
       return false;
     } catch (error) {

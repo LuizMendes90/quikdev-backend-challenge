@@ -8,6 +8,7 @@ import getUserById from '../../usecases/getUserById';
 import updateUser from '../../usecases/updateUser';
 import isValidPhone from '../../utils/validation/isValidPhone';
 import UserRepository from '../repository/UserRepository';
+import TokenJWT from '../token/TokenJWT';
 
 const userRoute = Router();
 
@@ -28,7 +29,8 @@ userRoute.post('/', async (req: Request, res: Response) => {
     return res.status(400).send({ msg: 'User name is required!' });
 
   const repository = new UserRepository();
-  const user = new User(repository);
+  const token = new TokenJWT();
+  const user = new User(repository, token);
 
   const response = await addUser(user, dto);
 
@@ -46,7 +48,8 @@ userRoute.get('/:id', async (req: Request, res: Response) => {
   }
 
   const repository = new UserRepository();
-  const user = new User(repository);
+  const token = new TokenJWT();
+  const user = new User(repository, token);
 
   const response = await getUserById(user, id);
   if (response) return res.status(200).send(response);
@@ -78,7 +81,8 @@ userRoute.put('/:id', async (req: Request, res: Response) => {
   }
 
   const repository = new UserRepository();
-  const user = new User(repository);
+  const token = new TokenJWT();
+  const user = new User(repository, token);
 
   const response = await updateUser(user, dto, id);
 
@@ -92,8 +96,10 @@ userRoute.delete('/:id', async (req: Request, res: Response) => {
   if (!validator.isUUID(id)) {
     return res.status(400).send({ msg: 'Id must be a UUID' });
   }
+
   const repository = new UserRepository();
-  const user = new User(repository);
+  const token = new TokenJWT();
+  const user = new User(repository, token);
 
   const response = await deleteUser(user, id);
 
