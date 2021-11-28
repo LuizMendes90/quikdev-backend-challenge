@@ -85,6 +85,76 @@
         }
       }
     },
+    "/login":{
+      "post": {
+        "summary":"Authenticate a user.",
+        "description": "Responsible to register a user.",
+        "tags":["User"],
+        "requestBody": {
+          "content":{
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterUser"
+              },
+              "examples": {
+                "user":{
+                  "value": {
+                    "username": "luizmendes90",
+                    "password": "minhasenha"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "$ref": "#/components/schemas/token"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema":{
+                  "$ref": "#/components/schemas/message"
+                },
+                "examples": {
+                  "responseMessage": {
+                    "value": {
+                      "msg": "User name is required!."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema":{
+                  "$ref": "#/components/schemas/message"
+                },
+                "examples": {
+                  "message": {
+                    "value": {
+                      "msg": "Login not found."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/user":{
       "post": {
         "summary":"Add one user.",
@@ -328,6 +398,14 @@
         "type":"object",
         "properties":{
           "msg":{
+              "type":"string"
+          }
+        }
+      },
+      "token": {
+        "type":"object",
+        "properties":{
+          "token":{
               "type":"string"
           }
         }
