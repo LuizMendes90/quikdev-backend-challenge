@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest --passWithNoTests",
     "dev": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts",
-    "test:unit": "npm test -- --watch",
+    "test:unit": "NODE_ENV=test npm test -- --watch",
     "start": "ts-node src/index.ts"
   },
   "author": "Luiz Mendes",
