@@ -43,8 +43,8 @@ userRoute.post('/', async (req: Request, res: Response) => {
 userRoute.get('/:id', async (req: Request, res: Response) => {
   const { id } = req.params;
 
-  if (!validator.isUUID(id)) {
-    return res.status(400).send({ msg: 'Id must be a UUID' });
+  if (!id) {
+    return res.status(400).send({ msg: 'ID is mandatory' });
   }
 
   const repository = new UserRepository();
@@ -69,8 +69,8 @@ userRoute.put('/:id', async (req: Request, res: Response) => {
     description: req.body.description,
   };
 
-  if (!validator.isUUID(id)) {
-    return res.status(400).send({ msg: 'Id must be a UUID' });
+  if (!id) {
+    return res.status(400).send({ msg: 'ID is mandatory' });
   }
   if (!isValidPhone(dto.primaryPhone))
     return res.status(400).send({ msg: 'Incorrect phone format!' });
@@ -93,8 +93,8 @@ userRoute.put('/:id', async (req: Request, res: Response) => {
 userRoute.delete('/:id', async (req: Request, res: Response) => {
   const { id } = req.params;
 
-  if (!validator.isUUID(id)) {
-    return res.status(400).send({ msg: 'Id must be a UUID' });
+  if (!id) {
+    return res.status(400).send({ msg: 'ID is mandatory' });
   }
 
   const repository = new UserRepository();
