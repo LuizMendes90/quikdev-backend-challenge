@@ -17,6 +17,8 @@ export default class User {
 
   description!: string;
 
+  password!: string;
+
   createdAt!: Date;
 
   constructor(private repo: IUserRepository) {}

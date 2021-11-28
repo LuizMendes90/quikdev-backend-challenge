@@ -12,7 +12,7 @@ class UserRepository implements IUserRepository {
 
   async createUser(user: User): Promise<boolean> {
     const userSchema = new UserSchema();
-
+    console.log(this.createUser);
     userSchema.name = user.name;
     userSchema.username = user.username;
     userSchema.birthdate = user.birthdate;
@@ -20,6 +20,7 @@ class UserRepository implements IUserRepository {
     userSchema.addressNumber = user.addressNumber;
     userSchema.primaryPhone = user.primaryPhone;
     userSchema.description = user.description;
+    userSchema.password = user.password;
     userSchema.createdAt = user.createdAt;
 
     let response;

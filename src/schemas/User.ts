@@ -26,6 +26,9 @@ export default class UserSchema {
   @Column()
   description!: string;
 
+  @Column()
+  password!: string;
+
   @Column({ type: 'date' })
   createdAt!: Date;
 }
