@@ -71,7 +71,6 @@ userRoute.put('/:id', async (req: Request, res: Response) => {
   }
   if (!isValidPhone(dto.primaryPhone))
     return res.status(400).send({ msg: 'Incorrect phone format!' });
-    
   if (!dto.username) {
     return res
       .status(400)
