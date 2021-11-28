@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import swaggerUi from 'swagger-ui-express';
+import dotenv from 'dotenv';
 import swaggerDocs from './api-docs/swagger.json';
 import userRoute from './infrastructure/controller/user';
 import registerUser from './infrastructure/controller/register';
