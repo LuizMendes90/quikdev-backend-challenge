@@ -5,7 +5,7 @@ import app from '../../app';
 describe('Register Route', () => {
   it('should return 400 when register user without mandatory data (username) is not sent', async () => {
     const res = await request(app)
-      .post('/v1/user')
+      .post('/v1/register')
       .send({ password: 'testpassword' });
     const { statusCode } = res;
 
@@ -13,7 +13,7 @@ describe('Register Route', () => {
   });
   it('should return 400 when register user without mandatory data (password) is not sent', async () => {
     const res = await request(app)
-      .post('/v1/user')
+      .post('/v1/register')
       .send({ username: 'testusername' });
 
     const { statusCode } = res;
