@@ -1,4 +1,6 @@
 import IUserRepository from '../infrastructure/repository/IUserRepository';
+import TokenJWT from '../infrastructure/token/TokenJWT';
+import Bcript from '../utils/crypt/BCrypt';
 
 export default class User {
   id!: string;
@@ -35,6 +37,22 @@ export default class User {
     const response = await this.repo.getUserById(this);
 
     return response ? this : false;
+  };
+
+  login = async (): Promise<string | boolean> => {
+    try {
+      const response = await this.repo.getUserWithPassword(this);
+      if (response) {
+        const crypt = new Bcript();
+        crypt.compare(this.password, response.password);
+        const token = new TokenJWT();
+        return token.generate(response).token;
+      }
+      return false;
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
   };
 
   verifyExistById = async (id: string): Promise<boolean> =>

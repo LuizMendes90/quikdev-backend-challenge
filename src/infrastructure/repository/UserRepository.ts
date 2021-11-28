@@ -57,6 +57,29 @@ class UserRepository implements IUserRepository {
     return user;
   }
 
+  async getUserWithPassword(user: User): Promise<User | boolean> {
+    const userSchema = new UserSchema();
+
+    userSchema.username = user.username;
+    console.log(userSchema);
+    const response = await this.repository.findOne(userSchema);
+    if (response) {
+      user.id = response.id;
+      user.name = response.name;
+      user.username = response.username;
+      user.birthdate = response.birthdate;
+      user.address = response.address;
+      user.addressNumber = response.addressNumber;
+      user.primaryPhone = response.primaryPhone;
+      user.description = response.description;
+      user.createdAt = response.createdAt;
+    } else {
+      return false;
+    }
+
+    return user;
+  }
+
   async getUserById(user: User): Promise<User | boolean> {
     try {
       const response = await this.repository.findOne(user.id);

@@ -5,6 +5,7 @@ interface IUserRepository {
   getUserByUserName(user: User): Promise<User | boolean>;
   getUserById(user: User): Promise<User | boolean>;
   verifyById(id: string): Promise<boolean>;
+  getUserWithPassword(user: User): Promise<User | boolean>;
   updateUser(id: string, user: User): Promise<boolean>;
   deleteUser(id: string): Promise<boolean>;
 }
