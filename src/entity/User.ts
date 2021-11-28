@@ -42,7 +42,7 @@ export default class User {
   login = async (): Promise<string | boolean> => {
     try {
       const response = await this.repo.getUserWithPassword(this);
-      if (response) {
+      if (response instanceof User) {
         const crypt = new Bcript();
         crypt.compare(this.password, response.password);
         const token = new TokenJWT();
