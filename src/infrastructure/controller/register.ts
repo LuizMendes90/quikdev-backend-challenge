@@ -14,6 +14,8 @@ registerRoute.post('/', async (req: Request, res: Response) => {
 
   if (!dto.username)
     return res.status(400).send({ msg: 'User name is required!' });
+  if (!dto.password)
+    return res.status(400).send({ msg: 'Password is required!' });
 
   const repository = new UserRepository();
   const user = new User(repository);
