@@ -13,7 +13,9 @@ export default function MiddlewareAuth(
       .replace('"', '')
       .replace('"', '')
       .trim();
-    const data = jwt.verify(String(token), `${process.env.SECRET}`);
+    if (process.env.NODE_ENV !== 'test')
+      jwt.verify(String(token), `${process.env.SECRET}`);
+
     next();
   } catch {
     res.sendStatus(401);
