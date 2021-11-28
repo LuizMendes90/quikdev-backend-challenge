@@ -6,6 +6,7 @@ import deleteUser from '../../usecases/deleteUser';
 import dtoUser from '../../usecases/dtoUser';
 import getUserById from '../../usecases/getUserById';
 import updateUser from '../../usecases/updateUser';
+import isValidPhone from '../../utils/validation/isValidPhone';
 import UserRepository from '../repository/UserRepository';
 
 const userRoute = Router();
@@ -21,9 +22,10 @@ userRoute.post('/', async (req: Request, res: Response) => {
     description: req.body.description,
   };
 
-  if (!dto.username) {
+  if (!isValidPhone(dto.primaryPhone))
+    return res.status(400).send({ msg: 'Incorrect phone format!' });
+  if (!dto.username)
     return res.status(400).send({ msg: 'User name is required!' });
-  }
 
   const repository = new UserRepository();
   const user = new User(repository);
